@@ -1527,12 +1527,7 @@ DOCTEST_CLANG_SUPPRESS_WARNING_POP
         // https://github.com/catchorg/Catch2/issues/565
         template <typename L>
         Expression_lhs<L> operator<<(L&& operand) {
-            return Expression_lhs<L>(static_cast<L&&>(operand), m_at);
-        }
-
-        template <typename L,typename types::enable_if<!doctest::detail::types::is_rvalue_reference<L>::value,void >::type* = nullptr>
-        Expression_lhs<const L&> operator<<(const L &operand) {
-            return Expression_lhs<const L&>(operand, m_at);
+            return Expression_lhs<L>(doctest::detail::forward<L>(operand), m_at);
         }
     };
 
