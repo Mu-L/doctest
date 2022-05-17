@@ -22,4 +22,7 @@ static MoveOnly genType(bool b) {
 TEST_CASE("Move Only Type") {
     CHECK(genType(true));
     CHECK(genType(false));
+
+    MoveOnly a{ 0 };
+    CHECK(a);
 }
